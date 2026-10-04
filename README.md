@@ -1,8 +1,7 @@
 # Session 16: CI/CD & GitHub Actions
 
-Live demo runs in separate repo https://github.com/Musharraf1128/hey-cicd
-(same app files at root there). Exact copy of that live workflow is kept
-here in s16_tasks/.github/workflows/ci.yml as proof.
+Calculator CI/CD demo. Workflow file is .github/workflows/ci.yml
+at repo root so GitHub runs it on every push.
 
 ## 1. CI vs CD and Pipeline
 
@@ -15,7 +14,6 @@ push -> test -> build -> security check -> docker push.
 ### Commands (local check)
 
 ```bash
-cd s16_tasks
 pytest -v
 ./build.sh
 docker build -t razor1128/calculator-app:latest .
@@ -37,7 +35,7 @@ setup python, run tests. Runner is ubuntu-latest given by GitHub.
 
 ### Screenshot
 
-![Pipeline green run](../images/s16-pipeline.png)
+![Pipeline green run](images/s16-pipeline.png)
 
 ## 3. Secrets and Artifacts
 
@@ -56,7 +54,7 @@ from the run page.
 
 ### Screenshot
 
-![Build artifact](../images/s16-artifact.png)
+![Build artifact](images/s16-artifact.png)
 
 ## 4. Build, Test and Docker Push
 
@@ -69,4 +67,4 @@ Image is visible on hub page with latest tag.
 
 ### Screenshot
 
-![Docker Hub image](../images/s16-dockerhub.png)
+![Docker Hub image](images/s16-dockerhub.png)

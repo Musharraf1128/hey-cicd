@@ -23,10 +23,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r s16_tasks/requirements.txt
+          pip install -r requirements.txt
       - name: Run tests
         run: |
-          cd s16_tasks && pytest -v
+          pytest -v
   build:
     name: Build Application
     needs: test
@@ -40,15 +40,15 @@ jobs:
           python-version: "3.12"
       - name: Build application
         run: |
-          cd s16_tasks && chmod +x build.sh && ./build.sh
+          chmod +x build.sh && ./build.sh
       - name: Show build output
         run: |
-          cat s16_tasks/build/build-info.txt
+          cat build/build-info.txt
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: calculator-build
-          path: s16_tasks/build/
+          path: build/
   security-check:
     name: Security Check
     needs: test
@@ -79,6 +79,6 @@ jobs:
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u razor1128 --password-stdin
       - name: Build Docker image
-        run: docker build -t razor1128/calculator-app:latest ./s16_tasks
+        run: docker build -t razor1128/calculator-app:latest .
       - name: Push Docker image
         run: docker push razor1128/calculator-app:latest
